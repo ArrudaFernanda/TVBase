@@ -1,5 +1,6 @@
-package com.a7apps.tvbase.ui.series;
+package com.a7apps.tvbase.ui.movies;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -11,10 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import com.a7apps.tvbase.R;
 import com.a7apps.tvbase.adapter.AdapMovies;
-import com.a7apps.tvbase.adapter.AdapSeries;
-import com.a7apps.tvbase.data.Data;
 
-public class SeriesFragment extends Fragment {
+public class MoviesFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
 
@@ -24,22 +23,23 @@ public class SeriesFragment extends Fragment {
     private CountDownTimer mCountDownTimer;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_series, container, false);
-        recyclerView = root.findViewById(R.id.rvSeries1);
-        progressBar = root.findViewById(R.id.progressSeries);
-        doSomething2();
+        View root = inflater.inflate(R.layout.fragment_movies, container, false);
+        recyclerView = root.findViewById(R.id.rvMovies1);
+        progressBar = root.findViewById(R.id.progressMovies);
+        doSomething();
         return root;
     }
-    public void doSomething2(){
+
+    public void doSomething(){
         Thread thread = new Thread(){
             @Override
             public void run() {
-                recyclerView.setAdapter(new AdapSeries(getContext()));
+                recyclerView.setAdapter(new AdapMovies(getContext()));
             }
         };
         thread.start();
     }
-    public void startTime(){
+    public void startTimer(){
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -50,7 +50,7 @@ public class SeriesFragment extends Fragment {
             public void onFinish() {
                 progressBar.setVisibility(View.INVISIBLE);
                 mTimmerRunning = false;
-                recyclerView.setAdapter(new AdapSeries(getContext()));
+                recyclerView.setAdapter(new AdapMovies(getContext()));
             }
         }.start();
     }
