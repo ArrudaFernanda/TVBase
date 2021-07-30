@@ -1,4 +1,4 @@
-package com.a7apps.tvbase.ui.movies;
+package com.a7apps.tvbase.ui.series;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,13 +12,12 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.a7apps.tvbase.R;
 
-public class MoviesFragment extends Fragment {
+public class DashboardFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-
+        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         return root;
     }

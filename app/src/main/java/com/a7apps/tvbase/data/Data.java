@@ -18,12 +18,12 @@ public class Data {
     }
 
     public ArrayList<String> getDataPopMovies() {
-        connection.connect(Constants.getBaseMovieUrl(), dataPopMovies);
+        connection.getPosters(Constants.getBaseMovieUrl(), dataPopMovies);
         return dataPopMovies;
     }
 
     public ArrayList<String> getDataPopSeries() {
-        connection.connect(Constants.getBaseTvUrl(), dataPopSeries);
+        connection.getPosters(Constants.getBaseTvUrl(), dataPopSeries);
         return dataPopSeries;
     }
 }

@@ -3,31 +3,23 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/mobile_navigation"
-            app:startDestination="@+id/nav_movies">
+            app:startDestination="@+id/navigation_home">
 
     <fragment
-            android:id="@+id/nav_movies"
+            android:id="@+id/navigation_home"
             android:name="com.a7apps.tvbase.ui.movies.MoviesFragment"
-            android:label="@string/menu_movies"
-            tools:layout="@layout/fragment_movies"/>
+            android:label="@string/title_home"
+            tools:layout="@layout/fragment_home"/>
 
     <fragment
-            android:id="@+id/nav_series"
-            android:name="com.a7apps.tvbase.ui.series.SeriesFragment"
-            android:label="@string/menu_series"
-            tools:layout="@layout/fragment_series"/>
+            android:id="@+id/navigation_dashboard"
+            android:name="com.a7apps.tvbase.ui.series.DashboardFragment"
+            android:label="@string/title_dashboard"
+            tools:layout="@layout/fragment_dashboard"/>
 
     <fragment
-            android:id="@+id/nav_customLists"
-            android:name="com.a7apps.tvbase.ui.customlists.CustomListsFragment"
-            android:label="@string/menu_customLists"
-            tools:layout="@layout/fragment_customlists"/>
-
-    <fragment
-            android:id="@+id/nav_config"
-            android:name="com.a7apps.tvbase.ui.config.ConfigFragment"
-            android:label="@string/menu_config"
-            tools:layout="@layout/fragment_config"/>
-
-
+            android:id="@+id/navigation_notifications"
+            android:name="com.a7apps.tvbase.ui.customlists.NotificationsFragment"
+            android:label="@string/title_notifications"
+            tools:layout="@layout/fragment_notifications"/>
 </navigation>
