@@ -1,6 +1,9 @@
 package com.a7apps.tvbase.connection;
 
 import android.content.Context;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.loader.content.AsyncTaskLoader;
 import com.a7apps.tvbase.assistant.AssistantMethods;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,16 +16,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
-public class Connection implements Connect {
+public class Connection {
     private Context context;
+    private RequestQueue mQueue;
+    private AssistantMethods assistant;
 
     public Connection(Context context) {
         this.context = context;
+        mQueue = Volley.newRequestQueue(context);
+        assistant = new AssistantMethods(context);
     }
 
-    @Override
     public void getPosters(String url, final ArrayList<String> dataArray) {
-        RequestQueue mQueue = Volley.newRequestQueue(context);
         for (int i = 1; i < 4; i++){
             String numPage = String.valueOf(i);
 
@@ -50,7 +55,6 @@ public class Connection implements Connect {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     error.printStackTrace();
-                    AssistantMethods assistant = new AssistantMethods(context);
                     assistant.printConnectionError(error);
                 }
             });
@@ -58,5 +62,4 @@ public class Connection implements Connect {
             mQueue.add(request);
         }
     }
-
 }
