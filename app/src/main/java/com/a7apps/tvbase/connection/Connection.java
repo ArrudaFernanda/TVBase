@@ -1,9 +1,6 @@
 package com.a7apps.tvbase.connection;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.loader.content.AsyncTaskLoader;
 import com.a7apps.tvbase.assistant.AssistantMethods;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;

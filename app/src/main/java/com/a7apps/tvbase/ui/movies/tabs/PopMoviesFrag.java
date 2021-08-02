@@ -1,6 +1,7 @@
 package com.a7apps.tvbase.ui.movies.tabs;
 
 import android.os.Bundle;
+import android.widget.ProgressBar;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ public class PopMoviesFrag extends Fragment {
     private RecyclerView recyclerView;
     private Data data;
     private AdapRV adapRV;
+    private ProgressBar progress;
     public PopMoviesFrag() {
         // Required empty public constructor
     }
@@ -53,10 +55,7 @@ public class PopMoviesFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -64,6 +63,8 @@ public class PopMoviesFrag extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pop_movies, container, false);
         recyclerView = view.findViewById(R.id.rvPopMovies);
+        progress = view.findViewById(R.id.pbFragmentPopMovies);
+        recyclerView.setHasFixedSize(true);
 
         new Thread(new Runnable() {
             @Override
@@ -71,10 +72,16 @@ public class PopMoviesFrag extends Fragment {
                 data = new Data(getActivity().getApplicationContext());
                 adapRV = new AdapRV(getActivity().getApplicationContext(), data.getDataPopMovies());
                 adapRV.notifyDataSetChanged();
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         recyclerView.setAdapter(adapRV);
+                        progress.setVisibility(View.INVISIBLE);
                     }
                 });
             }
